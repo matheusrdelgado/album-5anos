@@ -7,23 +7,24 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f5f5dc; /* Cor de fundo bege */
+            background-color: #f5f5dc; /* Cor de fundo bege homogêneo */
             margin: 0;
             padding: 0;
             text-align: center;
         }
         h1 {
-            background-color: #ff7f50;
+            background-color: #f5f5dc; /* Fundo do título do mesmo tom de bege */
             padding: 30px;
             color: black;
             font-size: 3em;
             font-weight: bold; /* Título com uma letra mais grossa */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Adiciona um pequeno efeito de sombra ao título */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Efeito de sombra ao título */
+            border-bottom: 2px solid #ddd; /* Linha fina para separar o título do conteúdo */
         }
         .question {
             margin: 20px;
             padding: 20px;
-            background-color: #ffffff;
+            background-color: #f5f5dc; /* Caixa das perguntas do mesmo tom de bege */
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
@@ -33,21 +34,22 @@
             align-items: center;
         }
         .option {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #dcd2b8; /* Cor mais próxima do bege para os botões */
+            color: black;
             padding: 15px;
             margin: 10px;
             border-radius: 10px;
             cursor: pointer;
             width: 70%;
             transition: background-color 0.3s ease, transform 0.2s ease;
+            border: 1px solid #ccc;
         }
         .option:hover {
-            background-color: #45a049;
-            transform: scale(1.1);
+            background-color: #c1b78a; /* Cor mais escura no hover */
+            transform: scale(1.05);
         }
         .option:active {
-            transform: scale(1.05);
+            transform: scale(1.02);
         }
         .result {
             display: none;
@@ -195,3 +197,4 @@
     </script>
 </body>
 </html>
+
