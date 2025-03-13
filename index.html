@@ -1,99 +1,197 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <title>Memórias Interativas</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-    }
-    .section {
-      display: none;
-      padding: 20px;
-    }
-    .active {
-      display: block;
-    }
-    #videoContainer {
-      position: relative;
-      width: 100%;
-      max-width: 560px;
-      margin: 20px auto;
-    }
-    #startBtn {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 1.1em;
-      cursor: pointer;
-    }
-    .quiz-container {
-      background: #fff;
-      max-width: 600px;
-      margin: 20px auto;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-    .option {
-      background: #eaeaea;
-      padding: 10px;
-      margin: 10px 0;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-    .option:hover {
-      background: #d4d4d4;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steps Of Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5dc; /* Cor de fundo bege */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        h1 {
+            background-color: #ff7f50;
+            padding: 20px;
+            color: white;
+            font-size: 2em;
+        }
+        .question {
+            margin: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .option {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 80%;
+        }
+        .option:hover {
+            background-color: #45a049;
+        }
+        .result {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
-  <!-- Seção do Vídeo -->
-  <div id="videoSection" class="section active">
-    <h1>Bem-vindo!</h1>
-    <div id="videoContainer">
-      <!-- Vídeo do YouTube -->
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/EkHTsc9PU2A?autoplay=1&controls=0" 
-              frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+    <h1>Steps Of Us</h1>
+    <div class="question" id="question1">
+        <h2>1. Onde nos conhecemos pela primeira vez?</h2>
+        <div class="options">
+            <div class="option" onclick="checkAnswer(1, 'Escola')">Escola</div>
+            <div class="option" onclick="checkAnswer(1, 'Ribeira')">Ribeira</div>
+            <div class="option" onclick="checkAnswer(1, 'Shopping')">Shopping</div>
+            <div class="option" onclick="checkAnswer(1, 'Aliados')">Aliados</div>
+        </div>
     </div>
-    <button id="startBtn">Entrar no Jogo</button>
-  </div>
 
-  <!-- Seção do Jogo -->
-  <div id="gameSection" class="section">
-    <div class="quiz-container">
-      <h2>Quiz de Memórias</h2>
-      <!-- Exemplo de pergunta, substitua ou adicione novas perguntas conforme desejar -->
-      <p id="question">Qual foi o lugar do nosso primeiro encontro?</p>
-      <div class="option" onclick="checkAnswer(this, true)">Praça Central</div>
-      <div class="option" onclick="checkAnswer(this, false)">Shopping</div>
-      <div class="option" onclick="checkAnswer(this, false)">Cinema</div>
-      <div class="option" onclick="checkAnswer(this, false)">Restaurante</div>
-      <p id="result"></p>
+    <div class="question" id="question2" style="display: none;">
+        <h2>2. Qual foi o primeiro filme que assistimos juntos?</h2>
+        <div class="options">
+            <div class="option" onclick="checkAnswer(2, 'Little Women')">Little Women</div>
+            <div class="option" onclick="checkAnswer(2, 'Emma')">Emma</div>
+            <div class="option" onclick="checkAnswer(2, 'Frozen II')">Frozen II</div>
+            <div class="option" onclick="checkAnswer(2, 'A Vida Invisível')">A Vida Invisível</div>
+        </div>
     </div>
-  </div>
 
-  <script>
-    // Troca da seção do vídeo para a do jogo quando o botão é clicado
-    document.getElementById('startBtn').addEventListener('click', function() {
-      document.getElementById('videoSection').classList.remove('active');
-      document.getElementById('gameSection').classList.add('active');
-    });
+    <div class="question" id="question3" style="display: none;">
+        <h2>3. Qual é a nossa música favorita?</h2>
+        <div class="options">
+            <div class="option" onclick="checkAnswer(3, 'I\'m Yours')">I'm Yours</div>
+            <div class="option" onclick="checkAnswer(3, 'A Thousand Years')">A Thousand Years</div>
+            <div class="option" onclick="checkAnswer(3, 'Perfect')">Perfect</div>
+            <div class="option" onclick="checkAnswer(3, 'Love Me Like You Do')">Love Me Like You Do</div>
+        </div>
+    </div>
 
-    // Função simples para verificar a resposta do quiz
-    function checkAnswer(element, isCorrect) {
-      let resultEl = document.getElementById('result');
-      if (isCorrect) {
-        resultEl.textContent = "Acertou! Esse lugar é uma lembrança especial para nós.";
-        element.style.backgroundColor = '#a8e6a3';
-      } else {
-        resultEl.textContent = "Ops! Não é essa a resposta correta. Tente novamente.";
-        element.style.backgroundColor = '#f7a8a8';
-      }
-    }
-  </script>
+    <div class="question" id="question4" style="display: none;">
+        <h2>4. Qual foi a primeira viagem que fizemos juntos?</h2>
+        <div class="options">
+            <div class="option" onclick="checkAnswer(4, 'Covilhã')">Covilhã</div>
+            <div class="option" onclick="checkAnswer(4, 'Açores')">Açores</div>
+            <div class="option" onclick="checkAnswer(4, 'Paris')">Paris</div>
+            <div class="option" onclick="checkAnswer(4, 'Nazaré')">Nazaré</div>
+        </div>
+    </div>
+
+    <div class="question" id="question5" style="display: none;">
+        <h2>5. Qual comida sempre pedimos quando saímos para jantar?</h2>
+        <div class="options">
+            <div class="option" onclick="checkAnswer(5, 'Francesinha')">Francesinha</div>
+            <div class="option" onclick="checkAnswer(5, 'Pizza')">Pizza</div>
+            <div class="option" onclick="checkAnswer(5, 'Sushi')">Sushi</div>
+            <div class="option" onclick="checkAnswer(5, 'Churrasco')">Churrasco</div>
+        </div>
+    </div>
+
+    <div class="question" id="question6" style="display: none;">
+        <h2>6. Qual foi o primeiro presente de aniversário que te dei?</h2>
+        <div class="options">
+            <div class="option" onclick="checkAnswer(6, 'Colar')">Colar</div>
+            <div class="option" onclick="checkAnswer(6, 'Anel')">Anel</div>
+            <div class="option" onclick="checkAnswer(6, 'Botas')">Botas</div>
+            <div class="option" onclick="checkAnswer(6, 'Relógio')">Relógio</div>
+        </div>
+    </div>
+
+    <div class="question" id="question7" style="display: none;">
+        <h2>7. Qual foi o nosso primeiro passeio no Porto?</h2>
+        <div class="options">
+            <div class="option" onclick="checkAnswer(7, 'Ribeira')">Ribeira</div>
+            <div class="option" onclick="checkAnswer(7, 'Jardim do Palácio de Cristal')">Jardim do Palácio de Cristal</div>
+            <div class="option" onclick="checkAnswer(7, 'Foz')">Foz</div>
+            <div class="option" onclick="checkAnswer(7, 'Praia de Matosinhos')">Praia de Matosinhos</div>
+        </div>
+    </div>
+
+    <div class="question" id="question8" style="display: none;">
+        <h2>8. Qual sobremesa mais combina com a gente?</h2>
+        <div class="options">
+            <div class="option" onclick="checkAnswer(8, 'Bolo de chocolate')">Bolo de chocolate</div>
+            <div class="option" onclick="checkAnswer(8, 'Pudim')">Pudim</div>
+            <div class="option" onclick="checkAnswer(8, 'Sorvete')">Sorvete</div>
+            <div class="option" onclick="checkAnswer(8, 'Tiramisu')">Tiramisu</div>
+        </div>
+    </div>
+
+    <div class="question" id="question9" style="display: none;">
+        <h2>9. O que fizemos no nosso primeiro Dia dos Namorados juntos?</h2>
+        <div class="options">
+            <div class="option" onclick="checkAnswer(9, 'Pizza Hut')">Pizza Hut</div>
+            <div class="option" onclick="checkAnswer(9, 'Passeio no parque')">Passeio no parque</div>
+            <div class="option" onclick="checkAnswer(9, 'Cinema e depois um milkshake')">Cinema e depois um milkshake</div>
+            <div class="option" onclick="checkAnswer(9, 'Jantar em casa com filme')">Jantar em casa com filme</div>
+        </div>
+    </div>
+
+    <div class="question" id="question10" style="display: none;">
+        <h2>10. Se fôssemos viajar hoje, para onde eu escolheria ir com você?</h2>
+        <div class="options">
+            <div class="option" onclick="checkAnswer(10, 'Rio de Janeiro')">Rio de Janeiro</div>
+            <div class="option" onclick="checkAnswer(10, 'Roma')">Roma</div>
+            <div class="option" onclick="checkAnswer(10, 'Dublin')">Dublin</div>
+            <div class="option" onclick="checkAnswer(10, 'Barcelona')">Barcelona</div>
+        </div>
+    </div>
+
+    <div class="result" id="result">
+        <h2>Parabéns! Você terminou o quiz!</h2>
+        <p id="score">Você acertou X de 10 perguntas!</p>
+    </div>
+
+    <script>
+        const answers = {
+            1: "Escola",
+            2: "Little Women",
+            3: "I'm Yours",
+            4: "Covilhã",
+            5: "Francesinha",
+            6: "Colar",
+            7: "Ribeira",
+            8: "Bolo de chocolate",
+            9: "Pizza Hut",
+            10: "Rio de Janeiro"
+        };
+
+        let score = 0;
+
+        function checkAnswer(question, answer) {
+            if (answers[question] === answer) {
+                score++;
+            }
+            document.getElementById('question' + question).style.display = 'none';
+            if (question < 10) {
+                document.getElementById('question' + (question + 1)).style.display = 'block';
+            } else {
+                document.getElementById('result').style.display = 'block';
+                document.getElementById('score').textContent = `Você acertou ${score} de 10 perguntas!`;
+            }
+        }
+
+        window.onload = () => {
+            document.getElementById('question1').style.display = 'block';
+        };
+    </script>
 </body>
 </html>
