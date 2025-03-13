@@ -14,9 +14,11 @@
         }
         h1 {
             background-color: #ff7f50;
-            padding: 20px;
-            color: white;
-            font-size: 2em;
+            padding: 30px;
+            color: black;
+            font-size: 3em;
+            font-weight: bold; /* Título com uma letra mais grossa */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Adiciona um pequeno efeito de sombra ao título */
         }
         .question {
             margin: 20px;
@@ -33,14 +35,19 @@
         .option {
             background-color: #4CAF50;
             color: white;
-            padding: 10px;
-            margin: 5px;
-            border-radius: 5px;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
             cursor: pointer;
-            width: 80%;
+            width: 70%;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
         .option:hover {
             background-color: #45a049;
+            transform: scale(1.1);
+        }
+        .option:active {
+            transform: scale(1.05);
         }
         .result {
             display: none;
@@ -50,6 +57,11 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+        .option-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -57,102 +69,52 @@
     <h1>Steps Of Us</h1>
     <div class="question" id="question1">
         <h2>1. Onde nos conhecemos pela primeira vez?</h2>
-        <div class="options">
-            <div class="option" onclick="checkAnswer(1, 'Escola')">Escola</div>
-            <div class="option" onclick="checkAnswer(1, 'Ribeira')">Ribeira</div>
-            <div class="option" onclick="checkAnswer(1, 'Shopping')">Shopping</div>
-            <div class="option" onclick="checkAnswer(1, 'Aliados')">Aliados</div>
-        </div>
+        <div class="options" id="options1"></div>
     </div>
 
     <div class="question" id="question2" style="display: none;">
         <h2>2. Qual foi o primeiro filme que assistimos juntos?</h2>
-        <div class="options">
-            <div class="option" onclick="checkAnswer(2, 'Little Women')">Little Women</div>
-            <div class="option" onclick="checkAnswer(2, 'Emma')">Emma</div>
-            <div class="option" onclick="checkAnswer(2, 'Frozen II')">Frozen II</div>
-            <div class="option" onclick="checkAnswer(2, 'A Vida Invisível')">A Vida Invisível</div>
-        </div>
+        <div class="options" id="options2"></div>
     </div>
 
     <div class="question" id="question3" style="display: none;">
         <h2>3. Qual é a nossa música favorita?</h2>
-        <div class="options">
-            <div class="option" onclick="checkAnswer(3, 'I\'m Yours')">I'm Yours</div>
-            <div class="option" onclick="checkAnswer(3, 'A Thousand Years')">A Thousand Years</div>
-            <div class="option" onclick="checkAnswer(3, 'Perfect')">Perfect</div>
-            <div class="option" onclick="checkAnswer(3, 'Love Me Like You Do')">Love Me Like You Do</div>
-        </div>
+        <div class="options" id="options3"></div>
     </div>
 
     <div class="question" id="question4" style="display: none;">
         <h2>4. Qual foi a primeira viagem que fizemos juntos?</h2>
-        <div class="options">
-            <div class="option" onclick="checkAnswer(4, 'Covilhã')">Covilhã</div>
-            <div class="option" onclick="checkAnswer(4, 'Açores')">Açores</div>
-            <div class="option" onclick="checkAnswer(4, 'Paris')">Paris</div>
-            <div class="option" onclick="checkAnswer(4, 'Nazaré')">Nazaré</div>
-        </div>
+        <div class="options" id="options4"></div>
     </div>
 
     <div class="question" id="question5" style="display: none;">
         <h2>5. Qual comida sempre pedimos quando saímos para jantar?</h2>
-        <div class="options">
-            <div class="option" onclick="checkAnswer(5, 'Francesinha')">Francesinha</div>
-            <div class="option" onclick="checkAnswer(5, 'Pizza')">Pizza</div>
-            <div class="option" onclick="checkAnswer(5, 'Sushi')">Sushi</div>
-            <div class="option" onclick="checkAnswer(5, 'Churrasco')">Churrasco</div>
-        </div>
+        <div class="options" id="options5"></div>
     </div>
 
     <div class="question" id="question6" style="display: none;">
         <h2>6. Qual foi o primeiro presente de aniversário que te dei?</h2>
-        <div class="options">
-            <div class="option" onclick="checkAnswer(6, 'Colar')">Colar</div>
-            <div class="option" onclick="checkAnswer(6, 'Anel')">Anel</div>
-            <div class="option" onclick="checkAnswer(6, 'Botas')">Botas</div>
-            <div class="option" onclick="checkAnswer(6, 'Relógio')">Relógio</div>
-        </div>
+        <div class="options" id="options6"></div>
     </div>
 
     <div class="question" id="question7" style="display: none;">
         <h2>7. Qual foi o nosso primeiro passeio no Porto?</h2>
-        <div class="options">
-            <div class="option" onclick="checkAnswer(7, 'Ribeira')">Ribeira</div>
-            <div class="option" onclick="checkAnswer(7, 'Jardim do Palácio de Cristal')">Jardim do Palácio de Cristal</div>
-            <div class="option" onclick="checkAnswer(7, 'Foz')">Foz</div>
-            <div class="option" onclick="checkAnswer(7, 'Praia de Matosinhos')">Praia de Matosinhos</div>
-        </div>
+        <div class="options" id="options7"></div>
     </div>
 
     <div class="question" id="question8" style="display: none;">
         <h2>8. Qual sobremesa mais combina com a gente?</h2>
-        <div class="options">
-            <div class="option" onclick="checkAnswer(8, 'Bolo de chocolate')">Bolo de chocolate</div>
-            <div class="option" onclick="checkAnswer(8, 'Pudim')">Pudim</div>
-            <div class="option" onclick="checkAnswer(8, 'Sorvete')">Sorvete</div>
-            <div class="option" onclick="checkAnswer(8, 'Tiramisu')">Tiramisu</div>
-        </div>
+        <div class="options" id="options8"></div>
     </div>
 
     <div class="question" id="question9" style="display: none;">
         <h2>9. O que fizemos no nosso primeiro Dia dos Namorados juntos?</h2>
-        <div class="options">
-            <div class="option" onclick="checkAnswer(9, 'Pizza Hut')">Pizza Hut</div>
-            <div class="option" onclick="checkAnswer(9, 'Passeio no parque')">Passeio no parque</div>
-            <div class="option" onclick="checkAnswer(9, 'Cinema e depois um milkshake')">Cinema e depois um milkshake</div>
-            <div class="option" onclick="checkAnswer(9, 'Jantar em casa com filme')">Jantar em casa com filme</div>
-        </div>
+        <div class="options" id="options9"></div>
     </div>
 
     <div class="question" id="question10" style="display: none;">
         <h2>10. Se fôssemos viajar hoje, para onde eu escolheria ir com você?</h2>
-        <div class="options">
-            <div class="option" onclick="checkAnswer(10, 'Rio de Janeiro')">Rio de Janeiro</div>
-            <div class="option" onclick="checkAnswer(10, 'Roma')">Roma</div>
-            <div class="option" onclick="checkAnswer(10, 'Dublin')">Dublin</div>
-            <div class="option" onclick="checkAnswer(10, 'Barcelona')">Barcelona</div>
-        </div>
+        <div class="options" id="options10"></div>
     </div>
 
     <div class="result" id="result">
@@ -174,15 +136,52 @@
             10: "Rio de Janeiro"
         };
 
+        const options = {
+            1: ["Escola", "Ribeira", "Shopping", "Aliados"],
+            2: ["Little Women", "Emma", "Frozen II", "A Vida Invisível"],
+            3: ["I'm Yours", "A Thousand Years", "Perfect", "Love Me Like You Do"],
+            4: ["Covilhã", "Açores", "Paris", "Nazaré"],
+            5: ["Francesinha", "Pizza", "Sushi", "Churrasco"],
+            6: ["Colar", "Anel", "Botas", "Relógio"],
+            7: ["Ribeira", "Jardim do Palácio de Cristal", "Foz", "Praia de Matosinhos"],
+            8: ["Bolo de chocolate", "Pudim", "Sorvete", "Tiramisu"],
+            9: ["Pizza Hut", "Passeio no parque", "Cinema e depois um milkshake", "Jantar em casa com filme"],
+            10: ["Rio de Janeiro", "Roma", "Dublin", "Barcelona"]
+        };
+
         let score = 0;
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        function loadQuestion(question) {
+            const questionOptions = options[question];
+            shuffleArray(questionOptions);
+
+            const optionsContainer = document.getElementById(`options${question}`);
+            optionsContainer.innerHTML = "";
+
+            questionOptions.forEach(option => {
+                const div = document.createElement("div");
+                div.classList.add("option");
+                div.textContent = option;
+                div.onclick = () => checkAnswer(question, option);
+                optionsContainer.appendChild(div);
+            });
+        }
 
         function checkAnswer(question, answer) {
             if (answers[question] === answer) {
                 score++;
             }
-            document.getElementById('question' + question).style.display = 'none';
+            document.getElementById(`question${question}`).style.display = 'none';
             if (question < 10) {
-                document.getElementById('question' + (question + 1)).style.display = 'block';
+                document.getElementById(`question${question + 1}`).style.display = 'block';
+                loadQuestion(question + 1);
             } else {
                 document.getElementById('result').style.display = 'block';
                 document.getElementById('score').textContent = `Você acertou ${score} de 10 perguntas!`;
@@ -190,6 +189,7 @@
         }
 
         window.onload = () => {
+            loadQuestion(1);
             document.getElementById('question1').style.display = 'block';
         };
     </script>
